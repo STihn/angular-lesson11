@@ -14,7 +14,12 @@ export class AppServiceService {
   }
 
   deleteUser(i) {
-    return this.http.delete(`https://jsonplaceholder.typicode.com/users/${i}`)
+    return this.http.delete(`https://jsonplaceholder.typicode.com/users/${i}`).pipe(map(data => {
+      console.log(data);
+      return data;
+    })).subscribe(data => {
+      console.log(data)
+    })
   }
 
   addUser(item) {
