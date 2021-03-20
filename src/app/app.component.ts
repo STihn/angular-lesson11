@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppServiceService } from './app-service.service';
-import { SearchPipe } from './search.pipe';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +12,7 @@ export class AppComponent implements OnInit{
   users;
   title = 'angular-lesson11';
 
-  constructor(public service: AppServiceService, public pipe: SearchPipe) {}
+  constructor(public service: AppServiceService) {}
 
   ngOnInit(): void {
     this.service.loadUsers().subscribe(users => {
@@ -70,14 +69,5 @@ export class AppComponent implements OnInit{
     }
     this.service.putUser(user);
     this.users.splice(2,1, user);
-  }
-
-  search() {
-    const arr = this.pipe.transform(this.users,this.searchStr);
-    this.users = arr;
-  }
-
-  refresh() {
-    this.ngOnInit();
   }
 }
